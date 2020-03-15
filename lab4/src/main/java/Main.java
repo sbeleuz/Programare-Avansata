@@ -87,5 +87,7 @@ public class Main {
         checkStableMatching = randProblem.checkStableMatching(matching);
         if (checkStableMatching) System.out.println("Matching is stable");
         else System.out.println("Matching is not stable");
+
+        System.out.println("test");
     }
 }
