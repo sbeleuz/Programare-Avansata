@@ -1,6 +1,6 @@
 Laboratorul 4
 
-Optional + bonus:
+Optional + bonus:\
 -Clasa resident + hospital;
 -Clasa Element parametrizata;
 -Clasa Partition (descrie o pereche de tipul (Resident, Hospital)); 
