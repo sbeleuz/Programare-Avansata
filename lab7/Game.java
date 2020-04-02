@@ -11,9 +11,11 @@ public class Game {
         Game.k = k;
     }
 
-    public void simulate() {
+    public void simulate() throws InterruptedException {
         for (Player player : players) {
-            new Thread(player).start();
+           Thread t = new Thread(player);
+            t.start();
+            t.join();
         }
     }
 
