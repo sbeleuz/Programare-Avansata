@@ -15,7 +15,7 @@ public class Game {
         for (Player player : players) {
            Thread t = new Thread(player);
             t.start();
-            t.join();
+            //t.join();
         }
     }
 

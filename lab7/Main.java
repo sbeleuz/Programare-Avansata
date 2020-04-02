@@ -12,7 +12,7 @@ public class Main {
 
         Game game = new Game(players, 3);
         game.simulate();
-        //TimeUnit.SECONDS.sleep(1); // ?
+        TimeUnit.SECONDS.sleep(1); // ?
         game.showPoints();
     }
 }
