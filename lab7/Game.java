@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -12,11 +13,14 @@ public class Game {
     }
 
     public void simulate() throws InterruptedException {
+        List<Thread> threads = new ArrayList<>();
         for (Player player : players) {
            Thread t = new Thread(player);
             t.start();
-            //t.join();
+            threads.add(t);
         }
+
+        for(Thread t : threads) t.join();
     }
 
     public void showPoints() {

@@ -11,8 +11,11 @@ public class Main {
         players.add(new Player("Player2"));
 
         Game game = new Game(players, 3);
-        game.simulate();
-        TimeUnit.SECONDS.sleep(1); // ?
+        try {
+            game.simulate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         game.showPoints();
     }
 }
