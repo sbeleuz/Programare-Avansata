@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
 public class ControlPanel extends JPanel {
     final MainFrame frame;
     JButton saveBtn = new JButton("Save");
