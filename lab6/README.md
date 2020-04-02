@@ -9,5 +9,5 @@ Compulsory (week 6):
 Optional & Bonus (week 7):
 - added support for drawing multiple types of components (regular polygons, nodes, edges + free drawing) - class ShapesPanel; and ConfigPanel update based on selected shape to draw;
 - save/load using file chooser (presented on compulsory);
-- implemented retained mode (List<Shape> in DrawingPanel) and deleting shapes (in ShapesPanel);
+- implemented retained mode (List\<Shape\> in DrawingPanel) and deleting shapes (in ShapesPanel);
 - added support for drawing graphs: nodes and edges (first part of the Bonus).
