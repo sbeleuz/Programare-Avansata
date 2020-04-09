@@ -1,12 +1,14 @@
 import java.util.*;
 
-public class Player implements Runnable {
-    private String name;
+abstract public class Player implements Runnable {
+    protected int id;
+    protected String name;
     static Board board;
-    private int points;
-    private List<Token> extractedTokens = new ArrayList<>();
+    protected int points;
+    protected List<Token> extractedTokens = new ArrayList<>();
 
-    public Player(String name) {
+    public Player(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -20,33 +22,28 @@ public class Player implements Runnable {
 
     @Override
     public void run() {
-        while (Game.isRunning) {
-            // try to extract a token (random)
-            Token t = board.extractToken();
+        play();
+    }
 
-            if (t.getNumber() == -1) { // no more tokens on the board
-                Game.isRunning = false;
-                this.points = largestArithmeticProgression(); // no winner, score = size of largest arithmetic progression
-            } else {
-                System.out.println(this.name + "-" + t.getNumber());
-                extractedTokens.add(t);
-                if (checkWin(Game.k)) {
-                    Game.isRunning = false;
-                    if (Game.winner == null) {
-                        Game.winner = this;
-                        this.points = board.getN(); // winner, score = n
-                    } else this.points = 0;
-                }
-            }
+    abstract void play();
+
+    protected int computePoints() {
+        if (Game.winner == this)
+            return board.getN();
+        else {
+            if (Game.winner == null)
+                return largestArithmeticProgression();
+            else
+                return 0;
         }
     }
 
     // complete arithmetic progression of size k
-    private boolean checkWin(int k) {
+    protected boolean checkWin(int k) {
         return largestArithmeticProgression() >= k;
     }
 
-    private int largestArithmeticProgression() {
+    protected int largestArithmeticProgression() {
         Collections.sort(extractedTokens);
 
         // count and remove blanks
@@ -54,7 +51,7 @@ public class Player implements Runnable {
         int i = 0;
         while (i < extractedTokens.size() && extractedTokens.get(i).getNumber() == 0) {
             blanksCounter++;
-            extractedTokens.remove(i++);
+            extractedTokens.remove(i);
         }
 
         int n = extractedTokens.size();

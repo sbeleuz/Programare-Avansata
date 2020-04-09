@@ -22,8 +22,11 @@ public class Board {
         return n;
     }
 
-    // random token extraction
-    public synchronized Token extractToken() {
+    public List<Token> getTokens() {
+        return tokens;
+    }
+
+    public synchronized Token extractRandomToken() {
         Random random = new Random();
 
         if (tokens.isEmpty()) {
@@ -34,5 +37,18 @@ public class Board {
             tokens.remove(index);
             return t;
         }
+    }
+
+    public synchronized Token extractToken(int tokenValue) {
+        if (tokens.isEmpty()) {
+            return new Token(-1);
+        } else {
+            for (Token token : tokens)
+                if (token.getNumber() == tokenValue) {
+                    tokens.remove(token);
+                    return token;
+                }
+        }
+        return new Token(-1);
     }
 }
