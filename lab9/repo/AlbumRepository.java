@@ -4,27 +4,20 @@ import entity.AlbumsEntity;
 import entity.ArtistsEntity;
 import util.PersistenceUtil;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
-public class AlbumRepository {
-    EntityManager em;
+public class AlbumRepository extends AbstractRepository<AlbumsEntity> {
 
     public AlbumRepository(PersistenceUtil persistenceUtil) {
         this.em = persistenceUtil.getEmf().createEntityManager();
     }
 
-    public void create(AlbumsEntity album) {
-        em.getTransaction().begin();
-        em.persist(album);
-        em.getTransaction().commit();
-        System.out.println("Album '" + album.getName() + "' has been created.");
-    }
-
+    @Override
     public AlbumsEntity findById(int id) {
         return em.find(AlbumsEntity.class, id);
     }
 
+    @Override
     public List<AlbumsEntity> findByName(String name) {
         return em.createNamedQuery("Albums.findByName", AlbumsEntity.class)
                 .setParameter("name", name)
@@ -37,7 +30,8 @@ public class AlbumRepository {
                 .getResultList();
     }
 
-    public void closeEm() {
-        em.close();
+    public List<AlbumsEntity> findAll() {
+        return em.createQuery("SELECT a FROM AlbumsEntity a", AlbumsEntity.class)
+                .getResultList();
     }
 }
