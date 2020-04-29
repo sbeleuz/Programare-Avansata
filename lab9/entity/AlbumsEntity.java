@@ -8,16 +8,16 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Albums.findByName", query = "SELECT a FROM AlbumsEntity a WHERE a.name=:name"),
         @NamedQuery(name = "Albums.findByArtist", query = "SELECT a FROM AlbumsEntity a WHERE a.artistId=:artistId")})
-public class AlbumsEntity {
+public class AlbumsEntity extends AbstractEntity {
     private int id;
     private String name;
-    private Integer releaseYear;
-    private Integer artistId;
+    private int releaseYear;
+    private int artistId;
 
     public AlbumsEntity() {
     }
 
-    public AlbumsEntity(String name, Integer releaseYear, Integer artistId) {
+    public AlbumsEntity(String name, int releaseYear, int artistId) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.artistId = artistId;
@@ -46,21 +46,21 @@ public class AlbumsEntity {
 
     @Basic
     @Column(name = "release_year")
-    public Integer getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Integer releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
     @Basic
     @Column(name = "artist_id")
-    public Integer getArtistId() {
+    public int getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(Integer artistId) {
+    public void setArtistId(int artistId) {
         this.artistId = artistId;
     }
 

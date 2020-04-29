@@ -6,12 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "artists", schema = "musicalbums")
 @NamedQuery(name = "Artists.findByName", query = "SELECT a FROM ArtistsEntity a WHERE a.name =:name")
-public class ArtistsEntity {
+public class ArtistsEntity extends AbstractEntity {
     private int id;
     private String name;
     private String country;
 
     public ArtistsEntity() {
+    }
+
+    public ArtistsEntity(int id, String name, String country) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
     }
 
     public ArtistsEntity(String name, String country) {
